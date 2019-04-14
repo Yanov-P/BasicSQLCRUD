@@ -39,11 +39,17 @@ class RowActivity : AppCompatActivity() {
             var dbManager = DBManager(this)
 
             var values = ContentValues()
-            values.put("FAMILY", edt_family.text.toString())
-            values.put("NUMBER_OF_SPECIES", Integer.parseInt( edt_species_num.text.toString()))
-            values.put("PERCENT_OF_SPECIES",  edt_species_percent.text.toString().toDouble())
-            values.put("NUMBER_OF_GENUS", Integer.parseInt( edt_genus_num.text.toString()))
-            values.put("PERCENT_OF_GENUS",  edt_genus_percent.text.toString().toDouble())
+            try {
+
+                values.put("FAMILY", edt_family.text.toString())
+                values.put("NUMBER_OF_SPECIES", Integer.parseInt(edt_species_num.text.toString()))
+                values.put("PERCENT_OF_SPECIES", edt_species_percent.text.toString().toDouble())
+                values.put("NUMBER_OF_GENUS", Integer.parseInt(edt_genus_num.text.toString()))
+                values.put("PERCENT_OF_GENUS", edt_genus_percent.text.toString().toDouble())
+            }catch (e: java.lang.Exception){
+                Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
 
             if (id == 0) {
                 val mID = dbManager.insert(values)
