@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import android.widget.Toast
 
 class DBManager {
@@ -62,6 +63,7 @@ class DBManager {
         }
 
         override fun onCreate(db: SQLiteDatabase?) {
+            Log.d("DB","DBManager onCreate")
             db!!.execSQL(CREATE_TABLE_SQL)
         }
 

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -14,6 +15,7 @@ import java.util.zip.Inflater
 class MainActivity : AppCompatActivity() {
 
     var rows = ArrayList<Family>()
+    lateinit var dbManager: DBManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +25,9 @@ class MainActivity : AppCompatActivity() {
 
 
         addBtn.setOnClickListener {
-            val dbManager = DBManager(this)
+            dbManager = DBManager(this)
             val cursor =  dbManager.queryAll()
-            updateRow(Family(cursor.count,"Family", 0,0.0,0,0.0))
+            updateRow(Family(0,"Family", 0,0.0,0,0.0))
         }
 
 //        rows = createDummy()
@@ -36,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     fun loadQueryAll() {
 
-        var dbManager = DBManager(this)
+        dbManager = DBManager(this)
         val cursor = dbManager.queryAll()
 
         rows.clear()
@@ -109,7 +111,7 @@ class MainActivity : AppCompatActivity() {
             vh.btnDelete.setOnClickListener {
                 val dbManager = DBManager(this.context!!)
                 val selectionArgs = arrayOf(row.id.toString())
-                dbManager.delete("Id=?", selectionArgs)
+                dbManager.delete("ID=?", selectionArgs)
                 loadQueryAll()
             }
 
@@ -134,6 +136,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateRow(row: Family){
+        Log.d("DB","updating row id:" + row.id)
         var intent = Intent(this, RowActivity::class.java)
         intent.putExtra("MainActId", row.id)
         intent.putExtra("MainActFamily", row.family)
@@ -165,6 +168,12 @@ class MainActivity : AppCompatActivity() {
             this.btnDelete = view.findViewById(R.id.btn_delete) as Button
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        loadQueryAll()
+    }
+
 }
 
 

@@ -45,9 +45,9 @@ class RowActivity : AppCompatActivity() {
             values.put("NUMBER_OF_GENUS", Integer.parseInt( edt_genus_num.text.toString()))
             values.put("PERCENT_OF_GENUS",  edt_genus_percent.text.toString().toDouble())
 
-
             if (id == 0) {
                 val mID = dbManager.insert(values)
+
 
                 if (mID > 0) {
                     Toast.makeText(this, "Add note successfully! id:$mID", Toast.LENGTH_LONG).show()
@@ -60,10 +60,10 @@ class RowActivity : AppCompatActivity() {
                 val mID = dbManager.update(values, "ID=?", selectionArs)
 
                 if (mID > 0) {
-                    Toast.makeText(this, "Add note successfully! id:$mID", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Edit note successfully! id:$mID", Toast.LENGTH_LONG).show()
                     finish()
                 } else {
-                    Toast.makeText(this, "Fail to add note! id:$mID", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Fail to edit note! id:$mID", Toast.LENGTH_LONG).show()
                 }
             }
         }
