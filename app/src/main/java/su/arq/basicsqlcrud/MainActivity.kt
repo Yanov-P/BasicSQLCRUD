@@ -20,6 +20,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         loadQueryAll()
+
+
+        addBtn.setOnClickListener {
+            val dbManager = DBManager(this)
+            val cursor =  dbManager.queryAll()
+            updateRow(Family(cursor.count,"Family", 0,0.0,0,0.0))
+        }
+
 //        rows = createDummy()
 
 //        val adapter = RowsAdapter(rows, this)
@@ -47,8 +55,8 @@ class MainActivity : AppCompatActivity() {
             } while (cursor.moveToNext())
         }
 
-        //TODO("delete dummy")
-        rows = createDummy()
+//        //TODO("delete dummy")
+//        rows = createDummy()
 
         var notesAdapter = RowsAdapter(rows, this)
         list_view.adapter = notesAdapter

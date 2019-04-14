@@ -6,26 +6,44 @@
               android:padding="15dp">
 
     <EditText
-            android:id="@+id/edtTitle"
+            android:id="@+id/edt_family"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:hint="Java Sample Approach"
-            android:inputType="textPersonName" />
+            android:hint="Family"
+            android:inputType="text" />
 
     <EditText
-            android:id="@+id/edtContent"
+            android:id="@+id/edt_species_num"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="Java technology, Spring Framework - approach to Java by Sample."
-            android:inputType="textMultiLine" />
+            android:hint="Num of Species"
+            android:inputType="text" />
+
+    <EditText
+            android:id="@+id/edt_species_percent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Percent of Species"
+            android:inputType="text" />
+
+    <EditText
+            android:id="@+id/edt_genus_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Number of Genus"
+            android:inputType="text" />
+    <EditText
+            android:id="@+id/edt_genus_percent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Percent of Genus"
+            android:inputType="text" />
 
     <Button
             android:id="@+id/btAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Add" />
+            android:text="Add/Edit" />
 
 </LinearLayout>
